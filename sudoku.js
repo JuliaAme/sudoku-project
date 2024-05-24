@@ -23,7 +23,9 @@ function solve(smth) {
   return board
 }
 
-function isSolved() {
+function isSolved(a) {
+
+  let board
   /**
    * Принимает игровое поле в том формате, в котором его вернули из функции solve.
    * Возвращает булевое значение — решено это игровое поле или нет.
@@ -33,9 +35,11 @@ function isSolved() {
 function prettyBoard(any) {
   let board = solve(any)
   let boardCheck = isSolved(board)
-console.log(boardCheck);
-  if boardCheck.includes(null) {
 
+  if boardCheck.includes(null) {
+    return isSolved(boardCheck)
+  } else {
+    console.table(boardCheck)
   }
   
 
