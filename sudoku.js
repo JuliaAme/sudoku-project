@@ -1,3 +1,4 @@
+
 const fs = require('fs')
 
 
@@ -25,11 +26,10 @@ const board = read(2);
 console.log(board);
 
 
+
 function solve(smth) {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
+ 
+
 
   let board = read(smth)
   let randomNum = Math.floor(Math.random() * 10)
@@ -64,10 +64,7 @@ function prettyBoard(any) {
   }
   
 
-
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Выводит в консоль/терминал судоку.
-   * Подумай, как симпатичнее его вывести.
-   */
 }
+
+
+console.log(getNumberTruGorizont(board));
