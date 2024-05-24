@@ -1,8 +1,9 @@
+const fs = require('fs')
 
 
-function isSolved(board) {
 
-    function getNumberTruGorizont (board) {
+
+function isSolved(board)  {
      let arr = board.reduce((acc,crr) => {
         crr.map((el, i) => {
           if(crr.indexOf(el) === crr.lastIndexOf(el)) {
@@ -18,7 +19,7 @@ function isSolved(board) {
   }
 
 
-const fs = require('fs')
+
 
 
 function read(num) {
@@ -72,9 +73,9 @@ function prettyBoard(num) {
     console.table(board)
   }
 
-  
+  prettyBoard(+process.argv[2])
 
-}
+
 
 
  
