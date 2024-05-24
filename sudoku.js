@@ -1,8 +1,29 @@
-function read() {
-  /**
-   * Прочесть файл puzzles.txt в кодировке 'utf-8' и вернуть эти данные из функции
-   */
-}
+const fs = require('fs')
+
+
+function read(num) {
+  if (typeof num === 'number') {
+    
+
+    const str = fs.readFileSync('puzzles.txt', "utf-8")
+  
+    const arr = str.split('\n').splice(0, 15)
+    let arr2 = arr.map((el) => el.split(','))
+    const result = arr2[num - 1][0].match(/.{9}/g).map((el) => el.split(''))
+    const board = result.map(row => row.map(el => {
+      if (el === '-') {
+        return el = null;
+      }
+      return Number(el)
+    }))
+    return board;
+  } else {
+    return num;
+  }
+} 
+const board = read(2);
+console.log(board);
+
 
 function solve() {
   /**
