@@ -1,95 +1,69 @@
 
+const fs = require('fs')
+
+
+function read(num) {
+  if (typeof num === 'number') {
+    
+
+    const str = fs.readFileSync('puzzles.txt', "utf-8")
+  
+    const arr = str.split('\n').splice(0, 15)
+    let arr2 = arr.map((el) => el.split(','))
+    const result = arr2[num - 1][0].match(/.{9}/g).map((el) => el.split(''))
+    const board = result.map(row => row.map(el => {
+      if (el === '-') {
+        return el = null;
+      }
+      return Number(el)
+    }))
+    return board;
+  } else {
+    return num;
+  }
+} 
+const board = read(2);
+console.log(board);
 
 
 
-// const ARR = [
-//   [1,2,3,4,5,6,7,8,9],
-//   [4,5,6,2,2,2,6,5,6],
-//   [7,8,9,8,6,2,6,5,6],
-//   [2,1,4,8,6,2,6,5,6],
-//   [3,6,5,8,6,2,6,5,6],
-//   [8,9,7,8,6,2,6,5,6],
-//   [7,6,5,8,6,2,6,5,6],
-//   [8,6,5,8,6,2,6,5,6],
-//   [9,6,5,8,6,2,6,5,6],
-// ];
-
-// function isSolved(arr) {
-
-// }
+function solve(smth) {
+ 
 
 
-// function getReverseArr (fdfd) {
-//   const newReverse = []
-//   for(let i = 0; i <= 8; i++) {
-//     if(i===0){
-//     newReverse.push([fdfd[i][0],fdfd[i][0],fdfd[i][0],fdfd[i][0],fdfd[i][0],fdfd[i][0],fdfd[i][0],fdfd[i][0],fdfd[i][0]])
-//   } else if (i === 1) {
-//     newReverse.push([fdfd[i][1],fdfd[i][1],fdfd[i][1],fdfd[i][1],fdfd[i][1],fdfd[i][1],fdfd[i][1],fdfd[i][1],fdfd[i][1]])
-//   } else if (i === 2) {
-//     newReverse.push([fdfd[i][2],fdfd[i][2],fdfd[i][2],fdfd[i][2],fdfd[i][2],fdfd[i][2],fdfd[i][2],fdfd[i][2],fdfd[i][2]])
-//   } else if (i === 3) {
-//     newReverse.push([fdfd[i][3],fdfd[i][3],fdfd[i][3],fdfd[i][3],fdfd[i][3],fdfd[i][3],fdfd[i][3],fdfd[i][3],fdfd[i][3]])
-//   } else if (i === 4) {
-//     newReverse.push([fdfd[i][4],fdfd[i][4],fdfd[i][4],fdfd[i][4],fdfd[i][4],fdfd[i][4],fdfd[i][4],fdfd[i][4],fdfd[i][4]])
-//   } else if (i === 5) {
-//     newReverse.push([fdfd[i][5],fdfd[i][5],fdfd[i][5],fdfd[i][5],fdfd[i][5],fdfd[i][5],fdfd[i][5],fdfd[i][5],fdfd[i][5]])
-//   } else if (i === 6) {
-//     newReverse.push([fdfd[i][6],fdfd[i][6],fdfd[i][6],fdfd[i][6],fdfd[i][6],fdfd[i][6],fdfd[i][6],fdfd[i][6],fdfd[i][6]])
-//   } else if (i === 7) {
-//     newReverse.push([fdfd[i][7],fdfd[i][7],fdfd[i][7],fdfd[i][7],fdfd[i][7],fdfd[i][7],fdfd[i][7],fdfd[i][7],fdfd[i][7]])
-//   } else {
-//     newReverse.push([fdfd[i][8],fdfd[i][8],fdfd[i][8],fdfd[i][8],fdfd[i][8],fdfd[i][8],fdfd[i][8],fdfd[i][8],fdfd[i][8]])
-//   } 
-//   }
-//   return newReverse
-// }
-
-function solve() {
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции read.
-   * Возвращает игровое поле после попытки его решить.
-   */
-  // const board = read()
+  let board = read(smth)
   let randomNum = Math.floor(Math.random() * 10)
+
   for (let i = 0; i < board.length; i++) {
     for (let k = 0; k < board[i].length; k++) {
       if (board[i][k] === null) {
-        board[i][k] = randomNum
+        board[i][k] === randomNum
       }
     }
   }
   return board
 }
 
-const board = [
-  [1,2,3,5,5,6,7,8,9],
-  [2,3,4,5,6,7,8,9,1],
-  [3,4,5,6,7,8,9,2,1],
-  [4,5,6,7,8,1,1,2,3],
-  [5,6,7,8,9,1,2,3,4],
-  [6,7,8,9,1,2,3,4,5],
-  [7,8,9,3,2,3,4,5,6],
-  [8,9,1,2,3,4,5,6,7],
-  [9,1,2,3,4,5,6,7,8]
-]
+function isSolved(a) {
 
-function getNumberTruGorizont (board) {
-    const tre = board.reduce((acc,crr) => {
-      crr.map((el, i) => {
-        if(crr.indexOf(el) === crr.lastIndexOf(el)) {
-          acc.push([el])
-        } else {
-          el = null
-          acc.push([el])
-        }
-      })
-      return acc
-    }, [])
-  if (tre.some(el => el.includes([null]))) {
-   return solve()
-  } else
-  return tre
+  let board
+  /**
+   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
+   * Возвращает булевое значение — решено это игровое поле или нет.
+   */
+}
+
+function prettyBoard(any) {
+  let board = solve(any)
+  let boardCheck = isSolved(board)
+
+  if boardCheck.includes(null) {
+    return isSolved(boardCheck)
+  } else {
+    console.table(boardCheck)
+  }
+  
+
 }
 
 
