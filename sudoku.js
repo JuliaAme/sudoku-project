@@ -1,4 +1,5 @@
 
+
 const fs = require('fs')
 
 
@@ -22,8 +23,7 @@ function read(num) {
     return num;
   }
 } 
-const board = read(2);
-console.log(board);
+
 
 
 
@@ -31,40 +31,32 @@ function solve(smth) {
  
 
 
-  let board = read(smth)
-  let randomNum = Math.floor(Math.random() * 10)
 
+  let board = read(smth)
+  
   for (let i = 0; i < board.length; i++) {
     for (let k = 0; k < board[i].length; k++) {
       if (board[i][k] === null) {
-        board[i][k] === randomNum
+        board[i][k] = Math.floor(Math.random() * 10)
       }
     }
   }
-  return board
-}
-
-function isSolved(a) {
-
-  let board
-  /**
-   * Принимает игровое поле в том формате, в котором его вернули из функции solve.
-   * Возвращает булевое значение — решено это игровое поле или нет.
-   */
-}
-
-function prettyBoard(any) {
-  let board = solve(any)
-  let boardCheck = isSolved(board)
-
-  if boardCheck.includes(null) {
-    return isSolved(boardCheck)
+  if (isSolved(board).includes(null)) {
+    return solve(board)
   } else {
-    console.table(boardCheck)
+    return board
   }
+
+}
+
+function prettyBoard(num) {
+    const board = solve(num)
+    console.table(board)
+  }
+
   
 
 }
 
 
-console.log(getNumberTruGorizont(board));
+
