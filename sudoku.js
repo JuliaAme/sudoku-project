@@ -15,28 +15,7 @@
 // ];
 
 // function isSolved(arr) {
-//   const newArrRandom = solve()
-//     const reverses = getReverseArr(arr)
-  
-  
-  
-  
-  
-  
-//   const newArr = arr.map(el, i) => el.map(item, indx) => {
-    
-//   }
-  
-  
-  
-  
-  
-  
-  
-//   const newArr = arr.map((el) => el.map((item, i, ar) => {
-//     if(item[i])
 
-// }
 // }
 
 
@@ -66,6 +45,22 @@
 //   return newReverse
 // }
 
+function solve() {
+  /**
+   * Принимает игровое поле в том формате, в котором его вернули из функции read.
+   * Возвращает игровое поле после попытки его решить.
+   */
+  // const board = read()
+  let randomNum = Math.floor(Math.random() * 10)
+  for (let i = 0; i < board.length; i++) {
+    for (let k = 0; k < board[i].length; k++) {
+      if (board[i][k] === null) {
+        board[i][k] = randomNum
+      }
+    }
+  }
+  return board
+}
 
 const board = [
   [1,2,3,5,5,6,7,8,9],
@@ -80,17 +75,20 @@ const board = [
 ]
 
 function getNumberTruGorizont (board) {
-  const tre = board.reduce((acc,crr) => {
-    crr.map((el, i) => {
-      if(crr.indexOf(el) === crr.lastIndexOf(el)) {
-        acc.push([el])
-      } else {
-        el = null
-        acc.push([el])
-      }
-    })
-    return acc
-  }, [])
+    const tre = board.reduce((acc,crr) => {
+      crr.map((el, i) => {
+        if(crr.indexOf(el) === crr.lastIndexOf(el)) {
+          acc.push([el])
+        } else {
+          el = null
+          acc.push([el])
+        }
+      })
+      return acc
+    }, [])
+  if (tre.some(el => el.includes([null]))) {
+   return solve()
+  } else
   return tre
 }
 
